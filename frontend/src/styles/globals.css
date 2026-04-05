@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-forest-dark: #2c3930;
+  --color-forest: #3f4f44;
+  --color-sand: #a27b5c;
+  --color-cream: #dcd7c9;
+  --sidebar-width: 260px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #2C3930;
+  color: #DCD7C9;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #2C3930; }
+::-webkit-scrollbar-thumb { background: #A27B5C; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #dcd7c9; }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #2C3930 inset !important;
+  -webkit-text-fill-color: #DCD7C9 !important;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.page-animate {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.shimmer-box {
+  background: linear-gradient(90deg, #3F4F44 0%, #4a5e52 50%, #3F4F44 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+  border-radius: 8px;
+}
+
+::selection {
+  background: rgba(162, 123, 92, 0.4);
+  color: #dcd7c9;
+}
+
+.font-marseille {
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Single merged @layer components block ─── */
+@layer components {
+
+  /* Card — uses bg-forest (#3F4F44) so it's visible against bg-forest-dark (#2C3930) */
+  .card {
+    @apply bg-forest rounded-2xl p-6 border border-white/5 shadow-card;
+  }
+
+  .glass {
+    background: rgba(63, 79, 68, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(220, 215, 201, 0.1);
+  }
+
+  .glass-dark {
+    background: rgba(44, 57, 48, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(162, 123, 92, 0.15);
+  }
+
+  .card-hover {
+    @apply bg-forest rounded-2xl p-6 border border-white/5 shadow-card;
+    transition: all 0.3s ease;
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 8px 32px rgba(44, 57, 48, 0.5);
+    border-color: rgba(162, 123, 92, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #dcd7c9 0%, #a27b5c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .input-field {
+    width: 100%;
+    background-color: #2c3930;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 0.625rem 1rem;
+    color: #dcd7c9;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .input-field::placeholder {
+    color: rgba(220, 215, 201, 0.3);
+  }
+
+  .input-field:focus {
+    border-color: #a27b5c;
+    box-shadow: 0 0 0 2px rgba(162, 123, 92, 0.2);
+  }
+
+  .input-field option {
+    background-color: #2c3930;
+    color: #dcd7c9;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.5rem;
+    background-color: #a27b5c;
+    color: #2c3930;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 20px rgba(162, 123, 92, 0.3);
+  }
+
+  .btn-primary:hover {
+    background-color: rgba(162, 123, 92, 0.9);
+    box-shadow: 0 0 30px rgba(162, 123, 92, 0.5);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.5rem;
+    background-color: transparent;
+    color: #dcd7c9;
+    font-weight: 500;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(162, 123, 92, 0.4);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(162, 123, 92, 0.1);
+    border-color: #a27b5c;
+  }
+
+  .btn-danger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.5rem;
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    font-weight: 500;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-danger:hover {
+    background-color: rgba(239, 68, 68, 0.25);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid;
+  }
+
+  .table-row-hover {
+    transition: background-color 0.15s ease;
+  }
+
+  .table-row-hover:hover {
+    background-color: rgba(162, 123, 92, 0.04);
+    cursor: pointer;
+  }
+
+  /* Shimmer skeleton — use alone, don't combine with animate-pulse */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(63, 79, 68, 0.3) 0%,
+      rgba(162, 123, 92, 0.15) 50%,
+      rgba(63, 79, 68, 0.3) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  .text-income  { color: #4ade80; }
+  .text-expense { color: #f87171; }
+  .bg-income    { background-color: rgba(74, 222, 128, 0.1); }
+  .bg-expense   { background-color: rgba(248, 113, 113, 0.1); }
+
+  .animated-number {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+  }
+}
+
+/* ─── Utilities ─── */
+@layer utilities {
+  .border-3 {
+    border-width: 3px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
