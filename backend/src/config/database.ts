@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Simple console logger to avoid circular dependency
 const log = {
   info:  (msg: string) => console.log(`[DB] ${new Date().toISOString()} INFO:  ${msg}`),
   error: (msg: string, err?: unknown) => console.error(`[DB] ${new Date().toISOString()} ERROR: ${msg}`, err || ''),
@@ -27,7 +26,9 @@ const dbConfig: PoolConfig = {
 export const pool = process.env.DATABASE_URL
   ? new Pool({
       connectionString: process.env.DATABASE_URL,
-      ssl: dbConfig.ssl,
+      ssl: {
+  rejectUnauthorized: false,
+},
     })
   : new Pool(dbConfig);
 
