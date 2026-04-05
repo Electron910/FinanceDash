@@ -9,7 +9,6 @@ const apiClient: AxiosInstance = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-// Request interceptor - attach token
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     if (typeof window !== 'undefined') {
@@ -23,7 +22,6 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor - handle auth errors
 apiClient.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error) => {
@@ -38,7 +36,6 @@ apiClient.interceptors.response.use(
   }
 );
 
-// Auth APIs
 export const authAPI = {
   login: (email: string, password: string) =>
     apiClient.post('/auth/login', { email, password }),
@@ -50,7 +47,6 @@ export const authAPI = {
     apiClient.post('/auth/register', data),
 };
 
-// User APIs
 export const userAPI = {
   getAll: () => apiClient.get<ApiResponse>('/users'),
   getById: (id: string) => apiClient.get<ApiResponse>(`/users/${id}`),
@@ -60,7 +56,6 @@ export const userAPI = {
   getStats: () => apiClient.get<ApiResponse>('/users/stats'),
 };
 
-// Transaction APIs
 export const transactionAPI = {
   getAll: (filters?: TransactionFilters) =>
     apiClient.get<ApiResponse>('/transactions', { params: filters }),
@@ -71,7 +66,6 @@ export const transactionAPI = {
   delete: (id: string) => apiClient.delete<ApiResponse>(`/transactions/${id}`),
 };
 
-// Dashboard APIs
 export const dashboardAPI = {
   getFull: () => apiClient.get<ApiResponse>('/dashboard'),
   getSummary: (startDate?: string, endDate?: string) =>
