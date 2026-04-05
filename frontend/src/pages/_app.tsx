@@ -1,9 +1,11 @@
 import type { AppProps } from 'next/app';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from '../contexts/AuthContext';
 import { ToastProvider } from '../contexts/ToastContext';
 import { Layout } from '../components/layout/Layout';
+import { warmupBackend } from '../utils/warmup';
 import '../styles/globals.css';
 
 const PUBLIC_ROUTES = ['/login', '/register', '/'];
@@ -11,6 +13,10 @@ const PUBLIC_ROUTES = ['/login', '/register', '/'];
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const isPublicRoute = PUBLIC_ROUTES.includes(router.pathname);
+
+  useEffect(() => {
+    warmupBackend();
+  }, []);
 
   return (
     <AuthProvider>
