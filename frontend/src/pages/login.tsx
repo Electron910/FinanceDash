@@ -17,7 +17,7 @@ const DEMO_ACCOUNTS = [
   {
     label: 'Admin',
     email: 'admin@financedash.com',
-    password: 'Admin@123',
+    password: 'password123',
     role: 'Full Access',
     icon: '⚡',
     color: '#A27B5C',
@@ -25,7 +25,7 @@ const DEMO_ACCOUNTS = [
   {
     label: 'Analyst',
     email: 'analyst@financedash.com',
-    password: 'Analyst@123',
+    password: 'password123',
     role: 'Read + Write',
     icon: '📊',
     color: '#60a5fa',
@@ -33,7 +33,7 @@ const DEMO_ACCOUNTS = [
   {
     label: 'Viewer',
     email: 'viewer@financedash.com',
-    password: 'Viewer@123',
+    password: 'password123',
     role: 'Read Only',
     icon: '👁',
     color: '#a78bfa',
@@ -81,7 +81,6 @@ export default function LoginPage() {
         <title>Login — FinanceDash</title>
       </Head>
 
-      {/* Full-screen container */}
       <div
         style={{
           minHeight: '100vh',
@@ -94,10 +93,8 @@ export default function LoginPage() {
           overflow: 'hidden',
         }}
       >
-        {/* Three.js Particle Background */}
         <ParticleBackground particleCount={80} />
 
-        {/* Gradient Orbs */}
         <div
           style={{
             position: 'absolute',
@@ -123,7 +120,6 @@ export default function LoginPage() {
           }}
         />
 
-        {/* Login Card */}
         <motion.div
           initial={{ opacity: 0, y: 32, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -135,7 +131,6 @@ export default function LoginPage() {
             maxWidth: '440px',
           }}
         >
-          {/* Logo Section */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -178,7 +173,6 @@ export default function LoginPage() {
             </p>
           </motion.div>
 
-          {/* Form Card */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -276,7 +270,6 @@ export default function LoginPage() {
                 )}
               </div>
 
-              {/* Password Field */}
               <div style={{ marginBottom: '1.5rem' }}>
                 <label
                   style={{
@@ -361,7 +354,6 @@ export default function LoginPage() {
                 )}
               </div>
 
-              {/* Submit Button */}
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
@@ -408,7 +400,6 @@ export default function LoginPage() {
               </motion.button>
             </form>
 
-            {/* Demo Accounts */}
             <div
               style={{
                 marginTop: '1.5rem',
